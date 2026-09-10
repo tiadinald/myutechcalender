@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>my classes 🎀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #fff6f8;
+    --card: #ffffff;
+    --pink: #ff9ec6;
+    --pink-deep: #e85d9e;
+    --lavender: #c9b6ff;
+    --plum: #4a3550;
+    --plum-soft: #8a7690;
+    --peach: #ffe2cd;
+    --mint: #cdf3e2;
+    --sky: #cfe6ff;
+    --lilac: #ead9ff;
+    --blush: #ffd7e8;
+    --line: #f3dee7;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 8% 12%, rgba(255,158,198,0.16) 0, transparent 40%),
+      radial-gradient(circle at 92% 88%, rgba(201,182,255,0.18) 0, transparent 42%);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--plum);
+    padding: 28px 18px 60px;
+  }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; }
+
+  /* ---------- header ---------- */
+  header{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:28px;
+  }
+
+  .title-block h1{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size: clamp(32px, 5vw, 46px);
+    color: var(--pink-deep);
+    margin:0 0 4px;
+    letter-spacing: 0.3px;
+  }
+  .title-block p{
+    margin:0;
+    color: var(--plum-soft);
+    font-size:15px;
+  }
+  .today-pill{
+    font-family:'Fredoka', sans-serif;
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size:14px;
+    color: var(--pink-deep);
+    box-shadow: 0 6px 18px rgba(232,93,158,0.08);
+  }
+
+  /* ---------- next class banner ---------- */
+  .next-class{
+    background: linear-gradient(120deg, var(--pink) 0%, var(--lavender) 100%);
+    border-radius: 22px;
+    padding: 22px 26px;
+    color: #fff;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap: 14px;
+    margin-bottom: 30px;
+    box-shadow: 0 14px 30px rgba(232,93,158,0.22);
+  }
+  .next-class .label{
+    font-size:12.5px;
+    opacity:0.9;
+    margin:0 0 4px;
+  }
+  .next-class .name{
+    font-family:'Fredoka', sans-serif;
+    font-size:20px;
+    font-weight:600;
+    margin:0;
+  }
+  .next-class .meta{
+    font-size:13.5px;
+    opacity:0.95;
+    margin-top:4px;
+  }
+  .countdown{
+    font-family:'Fredoka', sans-serif;
+    font-size:26px;
+    font-weight:600;
+    background: rgba(255,255,255,0.22);
+    padding: 10px 18px;
+    border-radius: 16px;
+    white-space: nowrap;
+  }
+
+  /* ---------- reminder toggle ---------- */
+  .reminder-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    background: var(--card);
+    border: 1.5px dashed var(--pink);
+    border-radius: 18px;
+    padding: 14px 20px;
+    margin-bottom: 32px;
+  }
+  .reminder-bar p{
+    margin:0;
+    font-size: 13.5px;
+    color: var(--plum-soft);
+    flex: 1 1 260px;
+  }
+  button.reminder-btn{
+    font-family:'Fredoka', sans-serif;
+    background: var(--pink-deep);
+    color:#fff;
+    border:none;
+    padding: 11px 20px;
+    border-radius: 999px;
+    font-size:14px;
+    cursor:pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 8px 18px rgba(232,93,158,0.28);
+  }
+  button.reminder-btn:hover{ transform: translateY(-2px); }
+  button.reminder-btn.on{
+    background: #57c8a0;
+    box-shadow: 0 8px 18px rgba(87,200,160,0.28);
+  }
+
+  /* ---------- week grid ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px){
+    .grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px){
+    .grid{ grid-template-columns: 1fr; }
+  }
+
+  .day-col{
+    background: var(--card);
+    border-radius: 20px;
+    padding: 16px;
+    border: 1.5px solid var(--line);
+    min-height: 120px;
+  }
+  .day-col.today{
+    border-color: var(--pink);
+    box-shadow: 0 10px 26px rgba(255,158,198,0.25);
+    position: relative;
+  }
+  .day-col.today::before{
+    content:"today 💕";
+    position:absolute;
+    top:-12px; right:16px;
+    background: var(--pink-deep);
+    color:#fff;
+    font-family:'Fredoka', sans-serif;
+    font-size:11px;
+    padding:4px 12px;
+    border-radius: 999px;
+  }
+
+  .day-name{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color: var(--plum);
+    margin: 2px 0 14px;
+  }
+
+  .class-card{
+    border-radius: 14px;
+    padding: 12px 13px;
+    margin-bottom: 10px;
+  }
+  .class-card:last-child{ margin-bottom:0; }
+  .class-card .time{
+    font-family:'Fredoka', sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    color: var(--plum);
+    margin-bottom:3px;
+  }
+  .class-card .module{
+    font-size:13.5px;
+    font-weight:700;
+    line-height:1.25;
+    margin-bottom:2px;
+  }
+  .class-card .activity{
+    font-size:12px;
+    color: var(--plum-soft);
+    margin-bottom:6px;
+  }
+  .class-card .detail{
+    font-size:11.5px;
+    color: var(--plum-soft);
+    display:flex;
+    gap:6px;
+    align-items:center;
+  }
+  .class-card .detail + .detail{ margin-top:2px; }
+
+  .empty-day{
+    font-size:13px;
+    color: var(--plum-soft);
+    padding: 20px 4px;
+    text-align:center;
+  }
+
+  /* module colour themes */
+  .c-orgmgmt{ background: var(--peach); }
+  .c-compsec{ background: var(--sky); }
+  .c-oop{ background: var(--lilac); }
+  .c-itpm{ background: var(--mint); }
+
+  footer{
+    text-align:center;
+    margin-top: 40px;
+    font-size:12.5px;
+    color: var(--plum-soft);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="title-block">
+      <h1>my classes 🎀</h1>
+      <p>weekly timetable, cute-ified ✨</p>
+    </div>
+    <div class="today-pill" id="todayPill">—</div>
+  </header>
+
+  <div class="next-class" id="nextClassBanner">
+    <div>
+      <p class="label">up next</p>
+      <p class="name" id="ncName">loading…</p>
+      <p class="meta" id="ncMeta"></p>
+    </div>
+    <div class="countdown" id="ncCountdown">--:--</div>
+  </div>
+
+  <div class="reminder-bar">
+    <p id="reminderText">turn on browser reminders and you'll get a little popup 30 minutes before each class starts (only works while this page is open in a tab).</p>
+    <button class="reminder-btn" id="reminderBtn">turn on reminders 💌</button>
+  </div>
+
+  <div class="grid" id="weekGrid"></div>
+
+  <footer>made with love for a very organised girl · edit the <code>classes</code> list in the script to update anything</footer>
+</div>
+
+<script>
+  // ---------- your schedule lives here ----------
+  // day: 1 = Monday ... 5 = Friday
+  const classes = [
+    { day: 2, start: "09:00", end: "10:00", module: "Organisation & Management UM1", activity: "Lecture",  room: "Room 47C-4", lecturer: "", cls: "c-orgmgmt" },
+    { day: 3, start: "08:00", end: "10:00", module: "Organisation & Management UM1", activity: "Tutorial", room: "Room 47C-4", lecturer: "", cls: "c-orgmgmt" },
+
+    { day: 1, start: "18:00", end: "21:00", module: "Computer Security UE4", activity: "Virtual Lab",      room: "Virtual Lab", lecturer: "", cls: "c-compsec" },
+    { day: 2, start: "17:00", end: "18:00", module: "Computer Security UE4", activity: "Virtual Tutorial", room: "Online", lecturer: "", cls: "c-compsec" },
+    { day: 3, start: "17:00", end: "18:00", module: "Computer Security UE4", activity: "Virtual Lecture",  room: "Online", lecturer: "", cls: "c-compsec" },
+
+    { day: 2, start: "18:00", end: "19:50", module: "Object Oriented Programming CIT2004", activity: "Online Lecture",  room: "Online", lecturer: "Rorron Clarke", cls: "c-oop" },
+    { day: 2, start: "20:00", end: "20:50", module: "Object Oriented Programming CIT2004", activity: "Online Tutorial", room: "Online", lecturer: "Alesia Bowen-Mighty", cls: "c-oop" },
+    { day: 3, start: "18:00", end: "20:50", module: "Object Oriented Programming CIT2004", activity: "Virtual Lab",     room: "Virtual Lab", lecturer: "Alesia Bowen-Mighty", cls: "c-oop" },
+
+    { day: 4, start: "18:00", end: "18:50", module: "IT Project Management CIT4024", activity: "Online Lecture",  room: "Online", lecturer: "Derrick Logan", cls: "c-itpm" },
+    { day: 5, start: "19:00", end: "20:50", module: "IT Project Management CIT4024", activity: "Online Tutorial", room: "Online", lecturer: "Charmaine Delisser", cls: "c-itpm" },
+  ];
+
+  const dayNames = { 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday" };
+
+  function toMinutes(t){
+    const [h, m] = t.split(":").map(Number);
+    return h * 60 + m;
+  }
+
+  function renderGrid(){
+    const grid = document.getElementById("weekGrid");
+    grid.innerHTML = "";
+    const now = new Date();
+    const todayIdx = now.getDay(); // 0 Sun ... 6 Sat
+
+    for(let d = 1; d <= 5; d++){
+      const col = document.createElement("div");
+      col.className = "day-col" + (d === todayIdx ? " today" : "");
+
+      const dayLabel = document.createElement("div");
+      dayLabel.className = "day-name";
+      dayLabel.textContent = dayNames[d];
+      col.appendChild(dayLabel);
+
+      const dayClasses = classes.filter(c => c.day === d).sort((a,b) => toMinutes(a.start) - toMinutes(b.start));
+
+      if(dayClasses.length === 0){
+        const empty = document.createElement("div");
+        empty.className = "empty-day";
+        empty.textContent = "no classes 🌷";
+        col.appendChild(empty);
+      } else {
+        dayClasses.forEach(c => {
+          const card = document.createElement("div");
+          card.className = "class-card " + c.cls;
+          card.innerHTML = `
+            <div class="time">${c.start} – ${c.end}</div>
+            <div class="module">${c.module}</div>
+            <div class="activity">${c.activity}</div>
+            <div class="detail">📍 ${c.room}</div>
+            ${c.lecturer ? `<div class="detail">🧑‍🏫 ${c.lecturer}</div>` : ""}
+          `;
+          col.appendChild(card);
+        });
+      }
+
+      grid.appendChild(col);
+    }
+  }
+
+  function nextOccurrence(c, from){
+    // returns the next Date this class occurs on/after `from`
+    const fromDay = from.getDay();
+    let diff = (c.day - fromDay + 7) % 7;
+    const candidate = new Date(from);
+    candidate.setDate(from.getDate() + diff);
+    const [sh, sm] = c.start.split(":").map(Number);
+    candidate.setHours(sh, sm, 0, 0);
+    if(candidate < from){
+      candidate.setDate(candidate.getDate() + 7);
+    }
+    return candidate;
+  }
+
+  function updateNextClass(){
+    const now = new Date();
+    let soonest = null;
+    let soonestClass = null;
+
+    classes.forEach(c => {
+      const occ = nextOccurrence(c, now);
+      if(!soonest || occ < soonest){
+        soonest = occ;
+        soonestClass = c;
+      }
+    });
+
+    if(soonestClass){
+      document.getElementById("ncName").textContent = soonestClass.module;
+      document.getElementById("ncMeta").textContent =
+        `${dayNames[soonestClass.day]} · ${soonestClass.activity} · ${soonestClass.room}`;
+
+      const diffMs = soonest - now;
+      const totalMin = Math.floor(diffMs / 60000);
+      const days = Math.floor(totalMin / 1440);
+      const hours = Math.floor((totalMin % 1440) / 60);
+      const mins = totalMin % 60;
+
+      let text;
+      if(days > 0) text = `${days}d ${hours}h`;
+      else if(hours > 0) text = `${hours}h ${mins}m`;
+      else text = `${mins}m`;
+
+      document.getElementById("ncCountdown").textContent = text;
+    }
+  }
+
+  function updateTodayPill(){
+    const now = new Date();
+    const opts = { weekday: "long", month: "long", day: "numeric" };
+    document.getElementById("todayPill").textContent = now.toLocaleDateString("en-US", opts);
+  }
+
+  // ---------- reminders (works while this tab is open) ----------
+  const notifiedKey = "notifiedClasses";
+  function getNotified(){
+    try { return JSON.parse(localStorage.getItem(notifiedKey) || "{}"); }
+    catch(e){ return {}; }
+  }
+  function saveNotified(obj){
+    localStorage.setItem(notifiedKey, JSON.stringify(obj));
+  }
+
+  function checkReminders(){
+    if(Notification.permission !== "granted") return;
+    const now = new Date();
+    const notified = getNotified();
+
+    classes.forEach(c => {
+      const occ = nextOccurrence(c, new Date(now.getTime() - 1000)); // today counts if not started
+      const msUntil = occ - now;
+      const minsUntil = msUntil / 60000;
+      const occKey = c.module + c.start + occ.toDateString();
+
+      if(minsUntil <= 30 && minsUntil > 29 && !notified[occKey]){
+        new Notification("Class in 30 minutes 🎀", {
+          body: `${c.module}\n${c.activity} · ${c.room}`,
+        });
+        notified[occKey] = true;
+        saveNotified(notified);
+      }
+    });
+  }
+
+  const reminderBtn = document.getElementById("reminderBtn");
+  const reminderText = document.getElementById("reminderText");
+
+  function setReminderState(){
+    if(Notification.permission === "granted"){
+      reminderBtn.textContent = "reminders on 🔔";
+      reminderBtn.classList.add("on");
+      reminderText.textContent = "you're all set — keep this tab open and you'll get a popup 30 minutes before each class.";
+    } else {
+      reminderBtn.textContent = "turn on reminders 💌";
+      reminderBtn.classList.remove("on");
+    }
+  }
+
+  reminderBtn.addEventListener("click", () => {
+    if(Notification.permission === "granted"){
+      return; // already on
+    }
+    Notification.requestPermission().then(setReminderState);
+  });
+
+  // ---------- init ----------
+  renderGrid();
+  updateNextClass();
+  updateTodayPill();
+  setReminderState();
+
+  setInterval(updateNextClass, 30000);
+  setInterval(checkReminders, 30000);
+  checkReminders();
+</script>
+</body>
+</html>
