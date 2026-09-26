@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tia's classes 🎀</title>
+<title>my classes 🎀</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -20,6 +20,7 @@
     --sky: #cfe6ff;
     --lilac: #ead9ff;
     --blush: #ffd7e8;
+    --butter: #fff3c4;
     --line: #f3dee7;
   }
 
@@ -36,7 +37,7 @@
     padding: 28px 18px 60px;
   }
 
-  .wrap{ max-width: 1180px; margin: 0 auto; }
+  .wrap{ max-width: 1280px; margin: 0 auto; }
 
   /* ---------- header ---------- */
   header{
@@ -151,13 +152,16 @@
   /* ---------- week grid ---------- */
   .grid{
     display:grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
   }
-  @media (max-width: 900px){
+  @media (max-width: 1100px){
+    .grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px){
     .grid{ grid-template-columns: repeat(2, 1fr); }
   }
-  @media (max-width: 560px){
+  @media (max-width: 460px){
     .grid{ grid-template-columns: 1fr; }
   }
 
@@ -207,18 +211,18 @@
     margin-bottom:3px;
   }
   .class-card .module{
-    font-size:13.5px;
+    font-size:13px;
     font-weight:700;
     line-height:1.25;
     margin-bottom:2px;
   }
   .class-card .activity{
-    font-size:12px;
+    font-size:11.5px;
     color: var(--plum-soft);
     margin-bottom:6px;
   }
   .class-card .detail{
-    font-size:11.5px;
+    font-size:11px;
     color: var(--plum-soft);
     display:flex;
     gap:6px;
@@ -234,10 +238,12 @@
   }
 
   /* module colour themes */
-  .c-orgmgmt{ background: var(--peach); }
-  .c-compsec{ background: var(--sky); }
-  .c-oop{ background: var(--lilac); }
-  .c-itpm{ background: var(--mint); }
+  .c-cmp3011{ background: var(--peach); }
+  .c-man3001{ background: var(--mint); }
+  .c-cit2004{ background: var(--lilac); }
+  .c-cit4001{ background: var(--sky); }
+  .c-cit4020{ background: var(--blush); }
+  .c-cit4024{ background: var(--butter); }
 
   footer{
     text-align:center;
@@ -253,7 +259,7 @@
   <header>
     <div class="title-block">
       <h1>my classes 🎀</h1>
-      <p>weekly timetable, cute-ified ✨</p>
+      <p>Good Luck Cutie Patootie</p>
     </div>
     <div class="today-pill" id="todayPill">—</div>
   </header>
@@ -274,29 +280,36 @@
 
   <div class="grid" id="weekGrid"></div>
 
-  <footer>Goooooood Luck with this semester Love</footer>
+  <footer>made with love for a very organised girl · edit the <code>classes</code> list in the script to update anything</footer>
 </div>
 
 <script>
   // ---------- your schedule lives here ----------
-  // day: 1 = Monday ... 5 = Friday
+  // day: 1 = Monday ... 6 = Saturday
   const classes = [
-    { day: 2, start: "09:00", end: "10:00", module: "Organisation & Management UM1", activity: "Lecture",  room: "Room LT-49", lecturer: "Oswy Gayle", cls: "c-orgmgmt" },
-    { day: 3, start: "08:00", end: "10:00", module: "Organisation & Management UM1", activity: "Tutorial", room: "Room 47B-5", lecturer: "Maurice Colquhoun", cls: "c-orgmgmt" },
+    { day: 1, start: "14:00", end: "16:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "F2F Practical", room: "Room C2", lecturer: "Delano Archibald", cls: "c-cmp3011" },
+    { day: 1, start: "17:00", end: "17:50", module: "MAN3001 - Organisation & Management", activity: "Online Lecture", room: "Online", lecturer: "Oswy Gayle", cls: "c-man3001" },
+    { day: 1, start: "19:00", end: "20:50", module: "MAN3001 - Organisation & Management", activity: "Online Tutorial", room: "Online", lecturer: "Oswy Gayle", cls: "c-man3001" },
 
-    { day: 1, start: "18:00", end: "21:00", module: "Computer Security UE4", activity: "Virtual Lab",      room: "Virtual Lab", lecturer: "Kevin Johnson", cls: "c-compsec" },
-    { day: 2, start: "17:00", end: "18:00", module: "Computer Security UE4", activity: "Virtual Tutorial", room: "Online", lecturer: "Kevin Johnson", cls: "c-compsec" },
-    { day: 3, start: "17:00", end: "18:00", module: "Computer Security UE4", activity: "Virtual Lecture",  room: "Online", lecturer: "Kevin Johnson", cls: "c-compsec" },
+    { day: 2, start: "12:00", end: "12:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "F2F Tutorial", room: "Room 1A-30", lecturer: "", cls: "c-cmp3011" },
+    { day: 2, start: "16:00", end: "16:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "Blended Lecture with Online", room: "Online", lecturer: "Karlene Black", cls: "c-cmp3011" },
+    { day: 2, start: "18:00", end: "19:50", module: "CIT2004 - Object Oriented Programming", activity: "Online Lecture", room: "Online", lecturer: "Rorron Clarke", cls: "c-cit2004" },
+    { day: 2, start: "20:00", end: "20:50", module: "CIT2004 - Object Oriented Programming", activity: "Online Tutorial", room: "Online", lecturer: "Alesia Bowen-Mighty", cls: "c-cit2004" },
 
-    { day: 2, start: "18:00", end: "19:50", module: "Object Oriented Programming CIT2004", activity: "Online Lecture",  room: "Online", lecturer: "Rorron Clarke", cls: "c-oop" },
-    { day: 2, start: "20:00", end: "20:50", module: "Object Oriented Programming CIT2004", activity: "Online Tutorial", room: "Online", lecturer: "Alesia Bowen-Mighty", cls: "c-oop" },
-    { day: 3, start: "18:00", end: "20:50", module: "Object Oriented Programming CIT2004", activity: "Virtual Lab",     room: "Virtual Lab", lecturer: "Alesia Bowen-Mighty", cls: "c-oop" },
+    { day: 3, start: "10:00", end: "11:50", module: "CIT4001 - Software Implementation", activity: "F2F Tutorial", room: "Room 2B-3", lecturer: "Dwight Thomas", cls: "c-cit4001" },
+    { day: 3, start: "17:00", end: "17:50", module: "CIT4020 - Computer Security", activity: "Online Lecture", room: "Online", lecturer: "Kevin B Johnson", cls: "c-cit4020" },
+    { day: 3, start: "18:00", end: "20:50", module: "CIT2004 - Object Oriented Programming", activity: "Virtual Lab", room: "Virtual Lab", lecturer: "Alesia Bowen-Mighty", cls: "c-cit2004" },
 
-    { day: 4, start: "18:00", end: "18:50", module: "IT Project Management CIT4024", activity: "Online Lecture",  room: "Online", lecturer: "Derrick Logan", cls: "c-itpm" },
-    { day: 5, start: "19:00", end: "20:50", module: "IT Project Management CIT4024", activity: "Online Tutorial", room: "Online", lecturer: "Charmaine Delisser", cls: "c-itpm" },
+    { day: 4, start: "18:00", end: "18:50", module: "CIT4024 - IT Project Management", activity: "Online Lecture", room: "Online", lecturer: "Derrick Logan", cls: "c-cit4024" },
+
+    { day: 5, start: "13:00", end: "13:50", module: "CIT4001 - Software Implementation", activity: "Blended Lecture with Online", room: "Online", lecturer: "Dwight Thomas", cls: "c-cit4001" },
+    { day: 5, start: "19:00", end: "20:50", module: "CIT4024 - IT Project Management", activity: "Online Tutorial", room: "Online", lecturer: "Charmaine Delisser", cls: "c-cit4024" },
+
+    { day: 6, start: "11:00", end: "13:50", module: "CIT4020 - Computer Security", activity: "Virtual Lab", room: "Virtual Lab", lecturer: "", cls: "c-cit4020" },
+    { day: 6, start: "14:00", end: "14:50", module: "CIT4020 - Computer Security", activity: "Online Tutorial", room: "Online", lecturer: "", cls: "c-cit4020" },
   ];
 
-  const dayNames = { 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday" };
+  const dayNames = { 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday", 6: "Saturday" };
 
   function toMinutes(t){
     const [h, m] = t.split(":").map(Number);
@@ -309,7 +322,7 @@
     const now = new Date();
     const todayIdx = now.getDay(); // 0 Sun ... 6 Sat
 
-    for(let d = 1; d <= 5; d++){
+    for(let d = 1; d <= 6; d++){
       const col = document.createElement("div");
       col.className = "day-col" + (d === todayIdx ? " today" : "");
 
