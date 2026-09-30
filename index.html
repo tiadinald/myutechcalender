@@ -110,6 +110,16 @@
     border-radius: 16px;
     white-space: nowrap;
   }
+  .next-class.live{
+    background: linear-gradient(120deg, #ff7fb0 0%, #b98cff 100%);
+  }
+  .next-class.live .countdown{
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+  }
 
   .grid{
     display:grid;
@@ -360,8 +370,47 @@
     return candidate;
   }
 
+  function findCurrentClass(now){
+    const todayIdx = now.getDay();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    return classes.find(c => c.day === todayIdx && nowMin >= toMinutes(c.start) && nowMin < toMinutes(c.end)) || null;
+  }
+
   function updateNextClass(){
     const now = new Date();
+    const current = findCurrentClass(now);
+    const label = document.querySelector("#nextClassBanner .label");
+    const ncZoom = document.getElementById("ncZoom");
+
+    const banner = document.getElementById("nextClassBanner");
+
+    if(current){
+      banner.classList.add("live");
+      label.textContent = "happening now";
+      document.getElementById("ncName").textContent = current.module;
+      document.getElementById("ncMeta").textContent =
+        `${current.activity} · ${current.room}`;
+
+      if(current.zoom){
+        ncZoom.href = current.zoom;
+        ncZoom.style.display = "inline-block";
+      } else {
+        ncZoom.style.display = "none";
+      }
+
+      const endToday = new Date(now);
+      const [eh, em] = current.end.split(":").map(Number);
+      endToday.setHours(eh, em, 0, 0);
+      const totalMin = Math.max(0, Math.floor((endToday - now) / 60000));
+      const hours = Math.floor(totalMin / 60);
+      const mins = totalMin % 60;
+      const text = hours > 0 ? `${hours}h ${mins}m left` : `${mins}m left`;
+      document.getElementById("ncCountdown").textContent = text;
+      return;
+    }
+
+    banner.classList.remove("live");
+    label.textContent = "up next";
     let soonest = null;
     let soonestClass = null;
 
@@ -378,7 +427,6 @@
       document.getElementById("ncMeta").textContent =
         `${dayNames[soonestClass.day]} · ${soonestClass.activity} · ${soonestClass.room}`;
 
-      const ncZoom = document.getElementById("ncZoom");
       if(soonestClass.zoom){
         ncZoom.href = soonestClass.zoom;
         ncZoom.style.display = "inline-block";
