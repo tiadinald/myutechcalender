@@ -39,7 +39,6 @@
 
   .wrap{ max-width: 1280px; margin: 0 auto; }
 
-  /* ---------- header ---------- */
   header{
     display:flex;
     flex-wrap:wrap;
@@ -73,7 +72,6 @@
     box-shadow: 0 6px 18px rgba(232,93,158,0.08);
   }
 
-  /* ---------- next class banner ---------- */
   .next-class{
     background: linear-gradient(120deg, var(--pink) 0%, var(--lavender) 100%);
     border-radius: 22px;
@@ -113,43 +111,6 @@
     white-space: nowrap;
   }
 
-  /* ---------- reminder toggle ---------- */
-  .reminder-bar{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-wrap:wrap;
-    background: var(--card);
-    border: 1.5px dashed var(--pink);
-    border-radius: 18px;
-    padding: 14px 20px;
-    margin-bottom: 32px;
-  }
-  .reminder-bar p{
-    margin:0;
-    font-size: 13.5px;
-    color: var(--plum-soft);
-    flex: 1 1 260px;
-  }
-  button.reminder-btn{
-    font-family:'Fredoka', sans-serif;
-    background: var(--pink-deep);
-    color:#fff;
-    border:none;
-    padding: 11px 20px;
-    border-radius: 999px;
-    font-size:14px;
-    cursor:pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow: 0 8px 18px rgba(232,93,158,0.28);
-  }
-  button.reminder-btn:hover{ transform: translateY(-2px); }
-  button.reminder-btn.on{
-    background: #57c8a0;
-    box-shadow: 0 8px 18px rgba(87,200,160,0.28);
-  }
-
-  /* ---------- week grid ---------- */
   .grid{
     display:grid;
     grid-template-columns: repeat(6, 1fr);
@@ -242,6 +203,18 @@
     text-decoration:none;
   }
   .class-card .zoom-link:hover{ background: var(--pink); }
+  .class-card .zoom-placeholder{
+    display:inline-block;
+    margin-top:8px;
+    font-size:11px;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    color: var(--plum-soft);
+    background: transparent;
+    border: 1.5px dashed var(--plum-soft);
+    padding:4px 10px;
+    border-radius: 999px;
+  }
 
   .empty-day{
     font-size:13px;
@@ -250,7 +223,6 @@
     text-align:center;
   }
 
-  /* module colour themes */
   .c-cmp3011{ background: var(--peach); }
   .c-man3001{ background: var(--mint); }
   .c-cit2004{ background: var(--lilac); }
@@ -287,8 +259,6 @@
     <div class="countdown" id="ncCountdown">--:--</div>
   </div>
 
-   
-
   <div class="grid" id="weekGrid"></div>
 
   <footer>🎀🎀🎀🎀🎀🎀🎀 <code>🎀</code> 🎀 </footer>
@@ -301,31 +271,38 @@
     { day: 1, start: "14:00", end: "16:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "F2F Practical", room: "Room C2", lecturer: "Delano Archibald", cls: "c-cmp3011", zoom: "https://utech-edu-jm.zoom.us/j/91447178311" },
     { day: 1, start: "17:00", end: "17:50", module: "MAN3001 - Organisation & Management", activity: "Online Lecture", room: "Online", lecturer: "Dr. Oswy Gayle", cls: "c-man3001", zoom: "https://utech-edu-jm.zoom.us/j/97611565535" },
     { day: 1, start: "19:00", end: "20:50", module: "MAN3001 - Organisation & Management", activity: "Online Tutorial", room: "Online", lecturer: "Dr. Oswy Gayle", cls: "c-man3001", zoom: "https://utech-edu-jm.zoom.us/j/97318517598" },
- 
-    { day: 2, start: "12:00", end: "12:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "F2F Tutorial", room: "Room 1A-30", lecturer: "", cls: "c-cmp3011" },
+
+    { day: 2, start: "12:00", end: "12:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "F2F Tutorial", room: "Room 1A-30", lecturer: "", cls: "c-cmp3011", zoom: "" },
     { day: 2, start: "16:00", end: "16:50", module: "CMP3011 - Computer Organisation and Assembly", activity: "Blended Lecture with Online", room: "Online", lecturer: "Karlene Black", cls: "c-cmp3011", zoom: "https://utech-edu-jm.zoom.us/j/98400890554" },
     { day: 2, start: "18:00", end: "19:50", module: "CIT2004 - Object Oriented Programming", activity: "Online Lecture", room: "Online", lecturer: "Rorron Clarke", cls: "c-cit2004", zoom: "https://utech-edu-jm.zoom.us/w/93546586423?tk=dqdbiEXQVIGIXtujqrV3bOTugAFGTOhrw8o36sn-NlY.DQkAAAAVx8-hNxZhZldPcEl4TVNSLUt6SXE0RGZIR3pBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&pwd=MvqUdLYboJOMhr6hexlwcF2PdnxyOO.1" },
     { day: 2, start: "20:00", end: "20:50", module: "CIT2004 - Object Oriented Programming", activity: "Online Tutorial", room: "Online", lecturer: "Alesia Bowen-Mighty", cls: "c-cit2004", zoom: "https://utech-edu-jm.zoom.us/j/91758057052" },
- 
-    { day: 3, start: "10:00", end: "11:50", module: "CIT4001 - Software Implementation", activity: "F2F Tutorial", room: "Room 2B-3", lecturer: "Dwight Thomas", cls: "c-cit4001" },
+
+    { day: 3, start: "10:00", end: "11:50", module: "CIT4001 - Software Implementation", activity: "F2F Tutorial", room: "Room 2B-3", lecturer: "Dwight Thomas", cls: "c-cit4001", zoom: "" },
     { day: 3, start: "17:00", end: "17:50", module: "CIT4020 - Computer Security", activity: "Online Lecture", room: "Online", lecturer: "Kevin B Johnson", cls: "c-cit4020", zoom: "https://utech-edu-jm.zoom.us/j/97337023334?pwd=hunghQlITSK6zhFnD0tScUSbzLk0cc.1" },
     { day: 3, start: "18:00", end: "20:50", module: "CIT2004 - Object Oriented Programming", activity: "Virtual Lab", room: "Virtual Lab", lecturer: "Alesia Bowen-Mighty", cls: "c-cit2004", zoom: "https://utech-edu-jm.zoom.us/j/91758057052" },
- 
+
     { day: 4, start: "18:00", end: "18:50", module: "CIT4024 - IT Project Management", activity: "Online Lecture", room: "Online", lecturer: "Derrick Logan", cls: "c-cit4024", zoom: "https://utech-edu-jm.zoom.us/j/98114405630?pwd=By0is9gD1TYBAGAaaIz2asdauipbVz.1" },
- 
+
     { day: 5, start: "13:00", end: "13:50", module: "CIT4001 - Software Implementation", activity: "Blended Lecture with Online", room: "Online", lecturer: "Dwight Thomas", cls: "c-cit4001", zoom: "" },
     { day: 5, start: "19:00", end: "20:50", module: "CIT4024 - IT Project Management", activity: "Online Tutorial", room: "Online", lecturer: "Charmaine Delisser", cls: "c-cit4024", zoom: "https://utech-edu-jm.zoom.us/j/94869514927?pwd=N4qu8dhKm6bwzbyQouTlU13hC9l8iO.1" },
- 
-    { day: 6, start: "11:00", end: "13:50", module: "CIT4020 - Computer Security", activity: "Virtual Lab", room: "Virtual Lab", lecturer: "Prince D V Johnson", cls: "c-cit4020", zoom: "https://meet.google.com/smh-vdsy-zfo"},
-    { day: 6, start: "14:00", end: "14:50", module: "CIT4020 - Computer Security", activity: "Online Tutorial", room: "Online", lecturer: "Prince D V Johnson", cls: "c-cit4020", zoom: "https://meet.google.com/smh-vdsy-zfo"},
+
+    { day: 6, start: "11:00", end: "13:50", module: "CIT4020 - Computer Security", activity: "Virtual Lab", room: "Virtual Lab", lecturer: "Prince D V Johnson", cls: "c-cit4020", zoom: "https://meet.google.com/smh-vdsy-zfo" },
+    { day: 6, start: "14:00", end: "14:50", module: "CIT4020 - Computer Security", activity: "Online Tutorial", room: "Online", lecturer: "Prince D V Johnson", cls: "c-cit4020", zoom: "https://meet.google.com/smh-vdsy-zfo" },
   ];
- 
+
   const dayNames = { 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday", 6: "Saturday" };
- 
 
   function toMinutes(t){
     const [h, m] = t.split(":").map(Number);
     return h * 60 + m;
+  }
+
+  function to12Hour(t){
+    let [h, m] = t.split(":").map(Number);
+    const period = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if(h === 0) h = 12;
+    return `${h}:${String(m).padStart(2, "0")} ${period}`;
   }
 
   function renderGrid(){
@@ -355,12 +332,12 @@
           const card = document.createElement("div");
           card.className = "class-card " + c.cls;
           card.innerHTML = `
-            <div class="time">${c.start} – ${c.end}</div>
+            <div class="time">${to12Hour(c.start)} – ${to12Hour(c.end)}</div>
             <div class="module">${c.module}</div>
             <div class="activity">${c.activity}</div>
             <div class="detail">📍 ${c.room}</div>
             ${c.lecturer ? `<div class="detail">🧑‍🏫 ${c.lecturer}</div>` : ""}
-            ${c.zoom ? `<a class="zoom-link" href="${c.zoom}" target="_blank" rel="noopener">🔗 Join Zoom</a>` : ""}
+            ${c.zoom ? `<a class="zoom-link" href="${c.zoom}" target="_blank" rel="noopener">🔗 Join Zoom</a>` : (c.zoom === "" ? `<span class="zoom-placeholder">🔗 add link</span>` : "")}
           `;
           col.appendChild(card);
         });
@@ -371,7 +348,6 @@
   }
 
   function nextOccurrence(c, from){
-    // returns the next Date this class occurs on/after `from`
     const fromDay = from.getDay();
     let diff = (c.day - fromDay + 7) % 7;
     const candidate = new Date(from);
@@ -431,17 +407,12 @@
     document.getElementById("todayPill").textContent = now.toLocaleDateString("en-US", opts);
   }
 
- 
-
   // ---------- init ----------
   renderGrid();
   updateNextClass();
   updateTodayPill();
-  setReminderState();
 
   setInterval(updateNextClass, 30000);
-  setInterval(checkReminders, 30000);
-  checkReminders();
 </script>
 </body>
 </html>
