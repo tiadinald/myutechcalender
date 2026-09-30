@@ -431,57 +431,7 @@
     document.getElementById("todayPill").textContent = now.toLocaleDateString("en-US", opts);
   }
 
-  // ---------- reminders (works while this tab is open) ----------
-  const notifiedKey = "notifiedClasses";
-  function getNotified(){
-    try { return JSON.parse(localStorage.getItem(notifiedKey) || "{}"); }
-    catch(e){ return {}; }
-  }
-  function saveNotified(obj){
-    localStorage.setItem(notifiedKey, JSON.stringify(obj));
-  }
-
-  function checkReminders(){
-    if(Notification.permission !== "granted") return;
-    const now = new Date();
-    const notified = getNotified();
-
-    classes.forEach(c => {
-      const occ = nextOccurrence(c, new Date(now.getTime() - 1000)); // today counts if not started
-      const msUntil = occ - now;
-      const minsUntil = msUntil / 60000;
-      const occKey = c.module + c.start + occ.toDateString();
-
-      if(minsUntil <= 30 && minsUntil > 29 && !notified[occKey]){
-        new Notification("Class in 30 minutes 🎀", {
-          body: `${c.module}\n${c.activity} · ${c.room}`,
-        });
-        notified[occKey] = true;
-        saveNotified(notified);
-      }
-    });
-  }
-
-  const reminderBtn = document.getElementById("reminderBtn");
-  const reminderText = document.getElementById("reminderText");
-
-  function setReminderState(){
-    if(Notification.permission === "granted"){
-      reminderBtn.textContent = "reminders on 🔔";
-      reminderBtn.classList.add("on");
-      reminderText.textContent = "you're all set — keep this tab open and you'll get a popup 30 minutes before each class.";
-    } else {
-      reminderBtn.textContent = "turn on reminders 💌";
-      reminderBtn.classList.remove("on");
-    }
-  }
-
-  reminderBtn.addEventListener("click", () => {
-    if(Notification.permission === "granted"){
-      return; // already on
-    }
-    Notification.requestPermission().then(setReminderState);
-  });
+ 
 
   // ---------- init ----------
   renderGrid();
