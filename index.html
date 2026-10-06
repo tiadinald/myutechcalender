@@ -306,7 +306,7 @@
 
   function to12Hour(t){
     let [h, m] = t.split(":").map(Number);
-    const period = h >= 12 ? "PM" : "AM";
+    const period = h >= 12 ? "PM" : "PM";
     h = h % 12;
     if(h === 0) h = 12;
     return `${h}:${String(m).padStart(2, "0")} ${period}`;
